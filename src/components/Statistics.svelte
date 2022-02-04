@@ -183,6 +183,10 @@
     width: 80%;
   }
 
+  .statistics {
+    display: flex;
+  }
+
   .statistics,
   .guess-distribution {
     padding-bottom: 10px;
