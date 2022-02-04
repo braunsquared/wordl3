@@ -97,14 +97,14 @@
     <button class:selected={mode === 'daily'} on:click={() => (mode = 'daily')}> Daily </button>
     <button class:selected={mode === 'random'} on:click={() => (mode = 'random')}> Random </button>
   </div>
-  <div id="statistics">
+  <div class="statistics">
     <StatisticItem label="Games played" value={$stats[mode].gamesPlayed} />
     <StatisticItem label="Win Percentage" value={$stats[mode].winPercentage} />
     <StatisticItem label="Current Streak" value={$stats[mode].currentStreak} />
     <StatisticItem label="Max Streak" value={$stats[mode].maxStreak} />
   </div>
   <h1>Guess Distribution</h1>
-  <div id="guess-distribution">
+  <div class="guess-distribution">
     {#if Object.values($stats[mode].guesses).every(g => g === 0)}
       <div class="no-data">No Data</div>
     {:else}
@@ -121,12 +121,8 @@
         {#if mode === 'daily'}
           {#if activeDaily === $game.daily.gameNumber}
             <h1>Next {title}</h1>
-            <div id="timer">
-              <div class="statistic-container">
-                <div class="statistic timer">
-                  <CountdownTimer />
-                </div>
-              </div>
+            <div class="timer">
+              <CountdownTimer />
             </div>
           {:else}
             <button on:click={onContinueGame}>Play Daily</button>
@@ -171,35 +167,24 @@
     margin-bottom: 10px;
   }
 
-  #statistics {
-    display: flex;
-  }
-
-  .statistic.timer {
+  .timer {
     font-variant-numeric: initial;
+    font-size: 28px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    letter-spacing: 0.05em;
+    font-variant-numeric: proportional-nums;
   }
 
-  .statistic-container {
-    flex: 1;
-
-    .statistic {
-      font-size: 36px;
-      font-weight: 400;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      letter-spacing: 0.05em;
-      font-variant-numeric: proportional-nums;
-    }
-  }
-
-  #guess-distribution {
+  .guess-distribution {
     width: 80%;
   }
 
-  #statistics,
-  #guess-distribution {
+  .statistics,
+  .guess-distribution {
     padding-bottom: 10px;
   }
 

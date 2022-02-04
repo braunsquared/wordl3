@@ -45,7 +45,7 @@
     </div>
   </section>
 </div>
-<div id="footnote">
+<div class="footnote">
   <div>
     <div class="link"><a href="https://github.com/braunsquared/wordl3" target="_blank">GitHub</a></div>
   </div>
@@ -82,7 +82,7 @@
       padding: 16px;
     }
   }
-  #footnote {
+  .footnote {
     position: absolute;
     bottom: 0;
     left: 0;
