@@ -18,7 +18,7 @@ const newDailyGame = (game: Writable<GameState>) => {
       board: [],
       rowIndex: 0,
       status: GameStatus.InProgress,
-      lastDaily: gameIdx,
+      lastPlayedTs: Date.now(),
     };
 
     for (let i = 0; i < MaxGuesses; i++) {

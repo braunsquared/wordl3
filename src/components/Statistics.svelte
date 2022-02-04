@@ -1,4 +1,8 @@
 <script lang="ts">
+  import { createEventDispatcher } from 'svelte';
+  import { goto } from '$app/navigation';
+  import { get } from 'svelte/store';
+
   import BarGraph from './BarGraph.svelte';
   import CountdownTimer from './CountdownTimer.svelte';
   import Icon from './Icon.svelte';
@@ -15,11 +19,10 @@
 
   import type { StatisticsStore } from '$lib/models/stats';
   import { EvaluationResult, GameStatus, GameMode } from '$lib/models/game';
+
   import shareOrClipboard from '$lib/util/shareOrClipboard';
   import newRandomGame from '$lib/game/newRandomGame';
-  import { createEventDispatcher } from 'svelte';
   import abandonGame from '$lib/game/abandonGame';
-  import { goto } from '$app/navigation';
   import getDailyGameIndex from '$lib/game/getDailyGameIndex';
 
   export let title: string;
@@ -86,7 +89,9 @@
   };
 
   const onAbandonGame = () => {
-    abandonGame(getGameStore(mode));
+    const store = getGameStore(mode);
+    toast.push(get(store).solution.toUpperCase());
+    abandonGame(store);
     dispatcher('abandonGame');
   };
 </script>
@@ -229,8 +234,8 @@
       -webkit-tap-highlight-color: rgba(0, 0, 0, 0.3);
       font-size: 20px;
       height: 52px;
-      padding-left: 20px;
-      padding-right: 20px;
+      padding-left: 15px;
+      padding-right: 15px;
       filter: brightness(100%);
 
       &:hover {
