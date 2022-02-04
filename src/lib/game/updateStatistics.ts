@@ -3,22 +3,17 @@ import { stats } from '$lib/stores/stats';
 
 export interface GameOutcome {
   isWin: boolean;
-  isStreak: boolean;
   numGuesses: number;
 }
 
 const updateStatistics = (type: GameMode, outcome: GameOutcome) => {
   stats.update(state => {
-    const { isWin, isStreak, numGuesses } = outcome;
+    const { isWin, numGuesses } = outcome;
 
     if (isWin) {
       state[type].guesses[numGuesses] += 1;
 
-      if (isStreak) {
-        state[type].currentStreak += 1;
-      } else {
-        state[type].currentStreak = 1;
-      }
+      state[type].currentStreak += 1;
     } else {
       state[type].currentStreak = 0;
       state[type].guesses.fail += 1;

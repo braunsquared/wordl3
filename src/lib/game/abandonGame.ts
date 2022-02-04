@@ -11,7 +11,6 @@ const abandonGame = (game: Writable<GameState>) => {
   game.update(state => {
     updateStatistics(state.mode, {
       isWin: false,
-      isStreak: false,
       numGuesses: MaxGuesses,
     });
 

@@ -64,7 +64,6 @@
       if (isOver || isWin) {
         updateStatistics($game.mode, {
           isWin,
-          isStreak: false,
           numGuesses: $game.rowIndex,
         });
 

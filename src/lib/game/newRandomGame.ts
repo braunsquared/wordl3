@@ -25,7 +25,7 @@ const newRandomGame = (game: Writable<GameState>, number?: number) => {
         status: RowStatus.Ok,
       });
     }
-    newState.solution = words[gameIdx];
+    newState.solution = words[words.length - 1 - gameIdx];
     return newState;
   });
 };
