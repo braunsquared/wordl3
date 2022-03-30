@@ -2,11 +2,12 @@
   export let label: string;
   export let value: number;
   export let width: number;
+  export let highlight: boolean = false;
 </script>
 
 <div class="graph-container">
   <div class="guess">{label}</div>
-  <div class="graph"><div class="graph-bar" style:width={`${width}%`}><div class="num-guesses">{value}</div></div></div>
+  <div class="graph"><div class="graph-bar" class:highlight style:width={`${width}%`}><div class="num-guesses">{value}</div></div></div>
 </div>
 
 <style lang="scss">

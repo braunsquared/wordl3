@@ -55,11 +55,11 @@
     position: absolute;
     top: 16px;
     right: 16px;
-  }
 
-  .icon {
-    position: fixed;
-    user-select: none;
-    cursor: pointer;
+    :global(.icon) {
+      position: fixed;
+      user-select: none;
+      cursor: pointer;
+    }
   }
 </style>

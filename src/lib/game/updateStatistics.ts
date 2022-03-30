@@ -12,7 +12,6 @@ const updateStatistics = (type: GameMode, outcome: GameOutcome) => {
 
     if (isWin) {
       state[type].guesses[numGuesses] += 1;
-
       state[type].currentStreak += 1;
     } else {
       state[type].currentStreak = 0;

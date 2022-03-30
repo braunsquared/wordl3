@@ -33,8 +33,16 @@
 
   let mode: keyof StatisticsStore = initialMode;
   let maxGuesses: number = 0;
+  let highlightGuess: string = '0';
 
-  $: maxGuesses = Math.max.apply(Math, Object.values($stats[mode].guesses));
+  $: {
+    maxGuesses = Math.max.apply(Math, Object.values($stats[mode].guesses));
+    if ($game[mode].status === GameStatus.Win) {
+      highlightGuess = `${$game[mode].rowIndex}`;
+    } else {
+      highlightGuess = '0';
+    }
+  }
 
   const shareResults = async () => {
     let state = $game[mode];
@@ -90,7 +98,10 @@
 
   const onAbandonGame = () => {
     const store = getGameStore(mode);
-    toast.push(get(store).solution.toUpperCase());
+    toast.push({
+      msg: get(store).solution.toUpperCase(),
+      duration: 3000,
+    });
     abandonGame(store);
     dispatcher('abandonGame');
   };
@@ -115,7 +126,7 @@
     {:else}
       {#each Object.entries($stats[mode].guesses) as [guess, count]}
         {#if guess !== 'fail'}
-          <BarGraph label={guess} value={count} width={Math.max(7, Math.round((count / maxGuesses) * 100))} />
+          <BarGraph label={guess} value={count} width={Math.max(7, Math.round((count / maxGuesses) * 100))} highlight={guess === highlightGuess} />
         {/if}
       {/each}
     {/if}

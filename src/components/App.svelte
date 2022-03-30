@@ -73,7 +73,10 @@
           toast.push({ msg: Accolades[$game.rowIndex - 1], win: true });
           $game.board[$game.rowIndex - 1].status = RowStatus.Win;
         } else {
-          toast.push($game.solution.toUpperCase());
+          toast.push({
+            msg: $game.solution.toUpperCase(),
+            duration: 3000,
+          });
         }
 
         setTimeout(() => {

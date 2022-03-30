@@ -1,6 +1,4 @@
 <script>
-  import { fade } from 'svelte/transition';
-
   import ToastItem from './ToastItem.svelte';
 
   import { toast } from '$lib/stores/toast';
@@ -25,5 +23,6 @@
     transform: translate(-50%, 0);
     pointer-events: none;
     width: fit-content;
+    z-index: 4000;
   }
 </style>
